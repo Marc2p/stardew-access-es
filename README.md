@@ -16,6 +16,16 @@ Puedes tener una pluralización básica configurada con Fluent, pero eso se comp
 3. Se pueden usar condiciones en una entrada de traducción, lo que permite fusionar varias entradas en una sola.
 4. Tiene funciones personalizadas dentro de las entradas de traducción que extienden la funcionalidad.
 
+## cómo instalar y usar esta traducción
+
+1. Descarga la traducción desde gyt hub haciendo lo siguiente:
+   * Ve al inicio de esta página web, busca y selecciona el botón code, o código, que desplegará un submenú.
+   * selecciona download zip, o descargar archivo zip
+   * De forma alternativa, puedes [usar este enlace para descargar la traducción más reciente directamente desde este repositorio](https://github.com/Marc2p/stardew-access-es/archive/refs/heads/main.zip)
+2.  Ahora que descargaste el zip, extrae la carpeta llamada "[Fluent][ES] Stardew Access" que está dentro del archivo y pégala en la carpeta de mods de stardew valley, por defecto en windows usando steam: "C:\Program Files (x86)\Steam\steamapps\common\Stardew Valley\mods"
+   3. para verificar que se ha cargado el idioma nuevo con éxito, ejecuta stardew desde smapi y debería haber un mensaje en la consola que dice "[Project Fluent] Loading content pack `marc2p.fluent.stardewaccess.es`..."
+   4. de todos modos, debería anunciarse también en español la carga de stardew access junto con su número de versión, y listo, esto sería todo.
+
 ## Configuración del paquete de contenido de Fluent
 
 1. Renombra la carpeta `[Fluent][EN] Stardew Access` y reemplaza `EN` con el código del idioma al que vas a traducir, teniendo en cuenta su variante, si la hubiera.

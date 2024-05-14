@@ -8,7 +8,7 @@ common-ui-ok_button = Aceptar botón
 common-ui-cancel_button = Cancelar botón
 common-ui-confirm_button = Confirmar botón
 common-ui-drop_item_button = Soltar objeto botón
-common-ui-trashcan_button = Papelera
+common-ui-trashcan_button = Cubo de basura
 common-ui-organize_inventory_button = Organizar inventario botón
 common-ui-community_center_button = Centro comunitario botón
 common-ui-scroll_up_button = Desplazar hacia arriba botón
@@ -18,7 +18,7 @@ common-ui-previous_page_button = Página anterior botón
 common-ui-close_menu_button = Cerrar menú botón
 common-ui-back_button = Atrás botón
 common-ui-forward_button = Adelante botón
-common-ui-equipment_slots = Ranuras de equipo{$slot_name ->
+common-ui-equipment_slots = Ranuras de vestimenta equipable{$slot_name ->
     [hat] Sombrero
     [left_ring] Anillo izquierdo
     [right_ring] Anillo derecho
@@ -26,14 +26,14 @@ common-ui-equipment_slots = Ranuras de equipo{$slot_name ->
     [shirt] Camisa
     [pants] Pantalones
     *[other] {EMPTYSTRING()}
-  } slot{$is_empty ->
+  } ranura{$is_empty ->
     [0] : {$item_name}, {$item_description}
     *[1] {EMPTYSTRING()}
   }
 
 ### Options Element
 
-options_element-button_info = botón_información {$label} button
+options_element-button_info = botón_información {$label} botón
 options_element-text_box_info = {$label} cuadro de edición{$value ->
     [null] {EMPTYSTRING()}
     *[other] : {$value}
@@ -41,11 +41,11 @@ options_element-text_box_info = {$label} cuadro de edición{$value ->
 options_element-checkbox_info = {$is_checked ->
     [0] Desactivado
     *[1] Activado
-  } {$label} checkbox
-options_element-dropdown_info = {$label} desplegable, opción {$selected_option} selected
+  } {$label} casilla de verificación
+options_element-dropdown_info = {$label} desplegable, opción {$selected_option} seleccionado
 options_element-slider_info = {$slider_value}% {$label} deslizador
 options_element-plus_minus_button_info = {$selected_option} seleccionado de {$label}
-options_element-input_listener_info = {$label} está vinculado a {$buttons_list}. Left click to change.
+options_element-input_listener_info = {$label} está vinculado a {$buttons_list}. Click izquierdo para cambiar.
 
 ## Custom Menus
 
@@ -76,9 +76,9 @@ menu-tile_data_entry-event_check_box_label = Comprobar si actual es  {$is_festiv
   } id: {$event_id}
 menu-tile_data_entry-farm_type_check_box_label = Verifique el tipo de granja actual: {$farm_type}
 menu-tile_data_entry-farm_house_upgrade_level_drop_down_label = Verifique el nivel actual de mejora de la casa
-menu-tile_data_entry-quest_drop_down_label = Comprobar si el jugador posee algún quest
-menu-tile_data_entry-quest_drop_down-manual_entry_option = Introduzca manualmente el id del quest
-menu-tile_data_entry-manual_quest_id_text_box_label = Id del quest
+menu-tile_data_entry-quest_drop_down_label = Comprobar si el jugador posee algúna misión
+menu-tile_data_entry-quest_drop_down-manual_entry_option = Introduzca manualmente el id de la misión
+menu-tile_data_entry-manual_quest_id_text_box_label = Id de la misión
 menu-tile_data_entry-joja_member_checkbox_label = Revisar si el jugador es un miembro de la corporación Joja
 
 ## Bundle Menus
@@ -172,11 +172,11 @@ menu-social_page-npc_info = {$name}{$has_talked ->
     *[other] , {$relationship_status}
   }, {$heart_level} {$heart_level ->
     [1] corazón
-    *[other] hearts
+    *[other] corazones
   }, {$gifts_this_week} {$gifts_this_week ->
     [1] regalo
-    *[other] gifts
-  } given this week.
+    *[other] regalos
+  } Dados esta semana.
 
 menu-social_page-player_info = {$name}{$relationship_status ->
     [null] {EMPTYSTRING()}
@@ -219,6 +219,22 @@ menu-skills_page-player_info = {$name}, {$title}{$golden_walnut_count ->
     [0] {EMPTYSTRING()}
     [1] , 1 Gema Qi
     *[other] , {$qi_gem_count} Gemas Qi
+  }{$house_upgrade_level ->
+    [1] {EMPTYSTRING()}
+    [2] , Casa mejorada al segundo nivel
+    [3] , casa mejorada al tercer nivel
+    [4] , casa mejorada al cuarto nivel
+    *[other] , casa mejorada al nivel {$house_upgrade_level}
+  }{$lowest_mine_level ->
+    [0] {EMPTYSTRING()}
+    *[other] , Nivel más bajo de la mina alcanzado: {$lowest_mine_level}
+  }{$stardrop_count ->
+    [0] {EMPTYSTRING()}
+    [1] , 1 fruta estelar
+    *[other] , {$stardrop_count} Frutas estelares
+  }{$mastery_level ->
+    [-1] {EMPTYSTRING()}
+    *[other] , Nivel de maestría {$mastery_level}, {$current_mastery_points} de {$required_mastery_points} puntos
   }
 menu-skills_page-skill_info = {$name} en nivel {$level},
   {$buffs}
@@ -230,11 +246,11 @@ menu-animal_page-animal_info = {$name}, {$type}{$heart_count ->
     [1] , 1 corazón
     *[other] , {$heart_count} corazones
   }{$has_been_pet ->
-    [0] , no ha sido mascota aún
+    [0] , no ha sido acariciado aún
     *[other] {EMPTYSTRING()}
   }{$has_received_animal_cracker ->
     [0] {EMPTYSTRING()}
-    *[other], galleta de animal recibida
+    *[other], Ha comido galleta para animal
   }
 
 ## Menus With Inventory
@@ -341,7 +357,7 @@ menu-animal_query-animal_info =
     *[other] Dueño: {$parent_name}.
   }, {$mood}{$has_received_animal_cracker ->
     [0] {EMPTYSTRING()}
-    *[other], galleta de animal recibida
+    *[other], ha comido galleta para animal
   }
 menu-animal_query-confirm_selling_button = Confirmar venta del animal botón
 menu-animal_query-cancel_selling_button = Cancelar la venta del animal botón
@@ -384,7 +400,7 @@ menu-building_skin-previous_skin_button = Skin anterior
 ### Carpenter Menu
 
 menu-carpenter-blueprint_info = {$name}, Precio: {$price} oro, Ingredientes: {$ingredients_list}, {$days ->
-    [0] Se cosntruye al instante
+    [0] Se construye al instante
     [1] 1 día para construir
     *[other] {$days} días para construir
   }, Dimensiones: {$width} ancho y {$height} halto, Descripción: {$description}
@@ -400,6 +416,54 @@ menu-carpenter-demolish_building_button = Demoler edificio{$can_demolish ->
 menu-carpenter-construct_building_button = Construir edificio{$can_construct ->
     [0] , no puedes construir este edificio
     *[1] {EMPTYSTRING()}
+  }
+### Choose From Icons Menu
+
+menu-choose_from_icons-bobber_styles = {$bobber_id ->
+    [locked] Bloqueado
+    [id_1] Rojo
+    [id_2] Azul
+    [id_3] Verde
+    [id_4] Amarillo
+    [id_5] Rojo y azul
+    [id_6] Verde y amarillo
+    [id_7] Bola rosa
+    [id_8] Carita sonriente
+    [id_9] Cráneo
+    [id_10] Pato
+    [id_11] Perro
+    [id_12] Bola azul claro
+    [id_13] Arcilla
+    [id_14] Savia
+    [id_15] Junimo
+    [id_16] Gato
+    [id_17] Corazón
+    [id_18] Joja Cola
+    [id_19] Oso?
+    [id_20] Gancho
+    [id_21] Gato rosado
+    [id_22] Fragata
+    [id_23] Estrella de mar gelatinosa
+    [id_24] Baúl
+    [id_25] Ramita
+    [id_26] Flor de loto
+    [id_27] Béisbol
+    [id_28] Hamburguesa
+    [id_29] Azul claro y púrpura
+    [id_30] Esfera verde?
+    [id_31] Torta amarilla??
+    [id_32] Duende del polvo con ojos azules?
+    [id_33] Esmeralda
+    [id_34] Bola de fuego verde
+    [id_35] Bola de nieve
+    [id_36] Crystal
+    [id_37] Cabra? vaca?
+    [id_38] Diamante
+    [id_39] Fruta estrellada
+    *[other] Unknown estilo de corcho de pesca con {$bobber_id}
+  } {$selected ->
+    [0] {EMPTYSTRING()}
+    *[1] Seleccionado
   }
 
 ### Choose From List Menu
@@ -440,7 +504,7 @@ menu-letter_viewer-letter_message = {$message_content}{$is_money_included ->
   }{$is_quest ->
     [0] {EMPTYSTRING()}
     *[1] 
-      Click izquierdo para aceptar el quest
+      Click izquierdo para aceptar la misión
   }
 menu-letter_viewer-pagination_text-prefix = Página {$current_page} de {$total_pages}
   {$content}
@@ -462,6 +526,17 @@ menu-level_up-profession_chooser_heading = {$title}. Selecciona una nueva clase.
 menu-level_up-profession_chooser_button = Seleccionada: {$profession_description_list}
   Click izquierdo para elegir.
 menu-level_up-ok_button = {$title}, {$extra_info}, Recetas aprendidas: {$learned_recipes}, Click izquierdo para cerrar.
+
+### Mastery Menus
+
+menu-mastery-pedestial_info = {$final_path_text} {$current_points} de {$required_points},
+  {$stars ->
+    [1] 1 estrella
+    *[other] {$stars} estrellas
+  }
+menu-mastery-walls-claim_button = {$name},
+  {$rewards},
+  Reclamar bottón
 
 ### Naming Menu
 
@@ -526,11 +601,11 @@ menu-billboard-calendar-day_info = {$is_current ->
     *[other] , {$extra_info}
   }
 menu-billboard-daily_quest-accept_quest-suffix =
-  Click izquierdo para aceptar el quest.
+  Click izquierdo para aceptar la misión.
 
 ### Quest Log Menu (Journal Menu)
 
-menu-quest_log-cancel_quest_button = Cancelar quest botón
+menu-quest_log-cancel_quest_button = Cancelar misión botón
 menu-quest_log-reward_button = Recoger recompensa botón
 menu-quest_log-quest_brief = {$name} {$is_completed ->
     [0] {SIGNOFNUMBER($days_left) ->
@@ -571,15 +646,20 @@ menu-special_orders_board-quest_details = {$name}, Descripción: {$description},
 menu-special_orders_board-accept_button = {$is_left_quest ->
     [0] Derecha
     *[1] Izquierda
-  } quest: {$quest_details}
-  Click izquierdo para tomar este quest.
+  } misión: {$quest_details}
+  Click izquierdo para tomar esta misión.
 menu-special_orders_board-quest_in_progress = En progreso: {$quest_details}
-menu-special_orders_board-quest_completed = Quest {$name} completado! Abre el diario para recoger tu recompensa.
+menu-special_orders_board-quest_completed = Misión {$name} completada! Abre el diario para recoger tu recompensa.
 
 ## Title Menus
 
 ### Title Menu
 
+menu-title-stardew_access_loaded = Se ha cargado Stardew Access versión {$version} {$cheats ->
+    [1] con trampa activada
+    *[0] {EMPTYSTRING()}
+  }
+menu-title-click_to_skip = Click izquierdo para saltar presentación del título
 menu-title-new_game_button = Nueva partida botón
 menu-title-load_button = Cargar partida botón
 menu-title-co_op_button = Modo cooperativo botón

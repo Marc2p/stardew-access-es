@@ -69,6 +69,8 @@ feature-speak_position = {$verbose_coordinates ->
     [0] {$x_pos}, {$y_pos}
     *[1] X: {$x_pos}, Y: {$y_pos}
   }
+feature-speak_youve_got_mail = Tienes correo!
+feature-speak_cheater = Eres un sucio tramposo!
 feature-warnings-health = ¡Cuidado! Tu salud está al {$value} porciento
 feature-warnings-stamina = ¡Cuidado! tu Energía está al {$value} porciento
 feature-warnings-time = ¡Cuidado! Son las {$value}
@@ -115,6 +117,7 @@ tile-resource_clump-unknown = Grupo de recursos desconocido {$id}
 tile-water-name = Agua
 tile-cooled_lava-name = Lava enfriada
 tile-lava-name = Lava
+tile-fertile_weed_name = Maleza fértil
 tile-grass-name = {$grass_type ->
     *[1] Hierba
     [2] Hierba de cueva
@@ -123,6 +126,52 @@ tile-grass-name = {$grass_type ->
     [5] Hierba de cueva
     [6] Telaraña
     [7] Hierba Azul
+  }
+tile-twig-name = {$described ->
+    [0] Twig
+    *[other] {$qualified_item_id ->
+        [O294] Difurcada 
+        [O295] en racimo 
+        *[other] {EMPTYSTRING()}
+      }Ramita
+  }
+tile-stone-name = {$described ->
+    [0] {$qualified_item_id ->
+        [O46] Mística 
+        [O343] {EMPTYSTRING()} 
+        [O450] {EMPTYSTRING()} 
+        [O668] {EMPTYSTRING()} 
+        [O670] {EMPTYSTRING()} 
+        [O845] {EMPTYSTRING()} 
+        [O846] {EMPTYSTRING()} 
+        [O847] {EMPTYSTRING()} 
+        *[other] Colorida 
+      }Piedra
+    *[other] {$qualified_item_id ->
+        [O32] Piedra lisa con puntas marrones
+        [O34] Montículo de piedras grises
+        [O36] Piedra gris ovalada
+        [O38] Piedra marrón con grumos
+        [O40] Piedra cálida lisa marrón
+        [O42] Piedra dividida rústica marrón
+        [O46] piedra mística púrpura con remolinos azules
+        [O48] Piedra azul puntiaguda
+        [O50] Piedra azul lisa
+        [O52] Piedra turquesa ovalada
+        [O54] Acuamarina grumosa
+        [O56] Piedra roja puntiaguda
+        [O58] Piedra roja con forma de llamarada
+        [O343] Piedra gris pequeña
+        [O450] Piedra gris extrusiva
+        [O668] Piedra gris con forma de semilla
+        [O670] Piedra gris redonda
+        [O760] Piedra gris oscuro grumosa
+        [O762] Piedra lisa gris oscuro
+        [O845] Piedra abultada gris oscuro
+        [O846] Montículo de piedras gris oscuro azulado
+        [O847] Piedra púrpura oscuro extrusiva
+        *[other] Piedra
+      }
   }
 tile-sprinkler-pressure_nozzle-prefix = Presurizado {$content}
 tile-sprinkler-enricher-prefix = Enriqueciendo {$content}
@@ -141,7 +190,7 @@ tile-building_animal_door-suffix = {$name} puerta corral {$is_open ->
     *[1] Abierta
   }
 tile-mine_shaft-coal_bag = Bolsa
-tile-mine_shaft-dirt = Suciedad
+tile-mine_shaft-dirt = Tierra
 tile-mine_shaft-duggy_hole = Agujero de un Cavadorín
 tile-pet_bowl-prefix = {$is_in_use ->
     [0] No usado
@@ -178,7 +227,7 @@ dynamic_tile-farm-grandpa_shrine = Altar del Abuelo{SIGNOFNUMBER($candles) ->
     [positive] : {$candles} {$candles -> 
       [1] Vela
       *[other] Velas
-    } lit
+    } encendidas
     *[other] {EMPTYSTRING()}
   }
 tile-bundles-suffix = {$content} lote
@@ -268,6 +317,20 @@ npc-farm_animal_info = {$name}, {$type}, {$age} {$age ->
     *[other] meses
   }
 npc_name-horse_with_no_name = Caballo sin nombre
+monster_name-armored = {$monster_name} blindado
+monster_name-big_slime = gran {$colorful ->
+    [0] {EMPTYSTRING()}
+    *[1] {$color} 
+  }Baba{$holding ->
+    [0] {EMPTYSTRING()}
+    *[1] sosteniendo {$item_name}
+  }
+monster_name-dangerous = Peligroso {$monster_name}
+monster_name-flying_purple_shorts = Calzones púrpura voladores
+monster_name-mage = {$monster_name} Mago
+monster_name-mutant = {$monster_name} mutante
+monster_name-slime = Baba
+monster_name-truffle_crab = Cangrejo de trufas
 
 # Event Tiles
 
@@ -312,9 +375,15 @@ terrain_util-tree_type = {$type ->
     [7] Champiñón
     [8] Caoba
     [9] Palmera
+    [10] Verde frondoso
+    [11] Verde con hojas
+    [12] Verde pálido
+    [13] Místico
     *[other] Tipo de árbol desconocido {$type}
   }
 terrain_util-tree-seedling = seedling
+terrain_util-tree-stump = Tronco
+terrain_util-tree-mossy = Musgoso
 terrain_util-tree_growth_stage = {$stage ->
     [1] brote
     [2] plantón
@@ -351,13 +420,17 @@ terrain_util-fertilized = Fertilizado
 object_category-animal = Animal
 object_category-bridge = Puente
 object_category-building = Edificio
+object_category-buildings = Consturcciones
 object_category-bundle = Lote
 object_category-bush = Arbusto
 object_category-container = Contenedor
+object_category-containers = Contenedores
 object_category-crop = Cultivo
+object_category-crops = Cultivos
 object_category-debris = Escombros
 object_category-decoration = Decoración
 object_category-door = Puerta
+object_category-doors = Puertas
 object_category-dropped_item = Objeto soltado
 object_category-farmer = Granjero
 object_category-fishing = Pesca
@@ -365,8 +438,11 @@ object_category-fishpond = Estanque de peces
 object_category-flooring = Suelo
 object_category-furniture = Mueble
 object_category-interactable = Interactivo
+object_category-interactables = Interactivos
 object_category-machine = Máquina
+object_category-machines = Máquinas
 object_category-mine_item = Objeto de la mina
+object_category-mine_items = Objetos mineros
 object_category-npc = NPC
 object_category-pending = Pendiente
 object_category-quest_items = Objetos de misiones
